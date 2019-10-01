@@ -22,7 +22,7 @@ class CarAddPage extends Component {
         //const addDialog=null;
         return (
             <React.Fragment>
-                <h1>Add Car</h1>
+                {/* <h1>Add Car</h1> */}
                 <select className="form-control" name="maker" onChange={this.onChange} val={this.state.maker}>
                     <option>оберіть виробника</option>
                     {options}
