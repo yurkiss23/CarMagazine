@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../App.css';
 import CarAddPage from './car-add';
+import AddDialog from './AddDialog';
 
 import EclipseWidget from './eclipse';
 
@@ -12,8 +13,10 @@ class CarsBody extends React.Component {
     state = {
         cars:[],
         makersSelect:[],
-        loading: false
+        loading: false,
+        isShowDialog: false
     }
+    toggleDialog = this.toggleDialog.bind(this);
     componentDidMount(){
         const urlMakers = 'https://localhost:44331/api/makers/select';
         this.setState({loading: true});
@@ -35,8 +38,17 @@ class CarsBody extends React.Component {
             }
         );
     }
+
+    // toggleDialog=(e)=>{
+    //     this.setState({[e.target.name]: e.target.value});
+    // }
+    toggleDialog(){
+        this.setState(prevState=>({
+            isShowDialog:!prevState.isShowDialog
+        }));
+    }
     render() {
-        const {loading, makersSelect}= this.state;
+        const {loading, makersSelect, isShowDialog}= this.state;
 
         const carItems = this.state.cars.map((car) =>
             <div key={car.id} className="card mb-4 box-shadow border-danger">
@@ -59,10 +71,16 @@ class CarsBody extends React.Component {
                     <div className="card-deck mb-3 text-center">
                         {carItems}
                     </div>
+                    <div>
+                        <button className="btn btn-primary btn-block" onClick={this.toggleDialog}>Add car</button>
+                        {this.state.isShowDialog === true ? <div>popup shown!</div> : <div>popup hidden!</div>}
+                    </div>
                 </div>
 
                 <CarAddPage makers={makersSelect}/>
             
+            { isShowDialog && <AddDialog /> }
+
             </React.Fragment>
         );
     }

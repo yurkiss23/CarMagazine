@@ -19,6 +19,7 @@ class CarAddPage extends Component {
         const options=makers.map(m =>
             <option key={m.id} value={m.id}>{m.name}</option>
         );
+        //const addDialog=null;
         return (
             <React.Fragment>
                 <h1>Add Car</h1>
