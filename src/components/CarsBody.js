@@ -38,6 +38,9 @@ class CarsBody extends React.Component {
             }
         );
     }
+    handleDelete=(e)=>{
+        
+    }
 
     // toggleDialog=(e)=>{
     //     this.setState({[e.target.name]: e.target.value});
@@ -58,6 +61,9 @@ class CarsBody extends React.Component {
                 <img src={car.image} className="card-img-top p-1" alt=""/>
                 <div className="card-body">
                     <h1 className="card-title pricing-card-title">{car.name}</h1>
+                    <button className="btn btn-danger">
+                        Видалити
+                    </button>
                 </div>
             </div>
         );
