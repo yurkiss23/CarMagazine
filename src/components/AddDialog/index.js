@@ -61,18 +61,18 @@ class AddDialog extends React.Component {
                         style={customStyles}
                         contentLabel="Example Modal"
                     >
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Add car</h2>
-                    {/* <div>Add car</div> */}
-                    <form>
-                        <span>Назва</span>
-                        <input />
-                        <span>Фото</span>
-                        <input />
-                        <CarAddPage makers={makersSelect}/>
-                        {/* <CarAddPage/> */}
-                    </form>
-                    <button onClick={this.closeModal}>Додати</button>
-                    <button onClick={this.closeModal}>Скасувати</button>
+                        <h2 ref={subtitle => this.subtitle = subtitle}>Add car</h2>
+                        {/* <div>Add car</div> */}
+                        <form>
+                            <span>Назва</span>
+                            <input />
+                            <span>Фото</span>
+                            <input />
+                            <CarAddPage makers={makersSelect}/>
+                            {/* <CarAddPage/> */}
+                        </form>
+                        <button onClick={this.closeModal}>Додати</button>
+                        <button onClick={this.closeModal}>Скасувати</button>
                     </Modal>
                 </div>
             </div>
