@@ -39,7 +39,7 @@ class DelDialog extends React.Component {
                         {/* <p>Modal body text goes here.</p> */}
                     </div>
                     <div className="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" onClick={this.closeModal}>Ні</button>
+                        <button type="button" className="btn btn-secondary" onClick={this.closeModal}>Ні</button>
                         <button type="button" className="btn btn-danger" onClick={this.closeModal}>Так</button>
                     </div>
                 </Modal>

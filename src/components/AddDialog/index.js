@@ -12,6 +12,17 @@ class AddDialog extends React.Component {
     afterOpenModal = this.afterOpenModal.bind(this);
     closeModal = this.closeModal.bind(this);
 
+    //додавання
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const name = this.getName.value;
+        const image = this.getImage.value;
+        const data = {
+            name, image
+        }
+        console.log(data)
+    }
+
     openModal() {
         this.setState({modalIsOpen: true});
     }
@@ -63,16 +74,16 @@ class AddDialog extends React.Component {
                     >
                         <h2 ref={subtitle => this.subtitle = subtitle}>Add car</h2>
                         {/* <div>Add car</div> */}
-                        <form>
+                        <form onSubmit = {this.handleSubmit}>
                             <span>Назва</span>
-                            <input />
+                            <input required type="text" ref={(input)=>this.getName = input} placeholder="Назва"/>
                             <span>Фото</span>
-                            <input />
+                            <input type="text" ref={(input)=>this.getImage = input} placeholder="Фото"/>
                             <CarAddPage makers={makersSelect}/>
                             {/* <CarAddPage/> */}
                         </form>
-                        <button onClick={this.closeModal}>Додати</button>
-                        <button onClick={this.closeModal}>Скасувати</button>
+                        <button className="btn btn-success" onClick={this.closeModal}>Додати</button>
+                        <button className="btn btn-secondary" onClick={this.closeModal}>Скасувати</button>
                     </Modal>
                 </div>
             </div>
