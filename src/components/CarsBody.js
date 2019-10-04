@@ -42,19 +42,7 @@ class CarsBody extends React.Component {
         );
         console.log(this.props)
     }
-    // handleDelete=(e)=>{
-    //     e.preventDefault();
-
-    // }
-
-    // toggleDialog=(e)=>{
-    //     this.setState({[e.target.name]: e.target.value});
-    // }
-    // toggleDialog(){
-    //     this.setState(prevState=>({
-    //         isShowDialog:!prevState.isShowDialog
-    //     }));
-    // }
+    
     render() {
         const {loading}= this.state;
 
@@ -85,6 +73,7 @@ class CarsBody extends React.Component {
                         {/* <button className="btn btn-primary btn-block" onClick={this.toggleDialog}>Add car</button> */}
                         {/* {this.state.isShowDialog === true ? <div>popup shown!</div> : <div>popup hidden!</div>} */}
                     </div>
+                    {console.log(this.props.addCars)}
                     {this.props.addCars.map((car) => 
                         <div key={car.id} className="card mb-4 box-shadow border-danger">
                             <div className="card-header">
@@ -93,7 +82,7 @@ class CarsBody extends React.Component {
                             <img src={car.image} className="card-img-top p-1" alt=""/>
                             <div className="card-body">
                                 <h1 className="card-title pricing-card-title">{car.name}</h1>
-                                <DelDialog/>
+                                <DelDialog name={car.name}/>
                             </div>
                         </div>
                     )}

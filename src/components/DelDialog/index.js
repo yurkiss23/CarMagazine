@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import {connect} from 'react-redux';
 
 class DelDialog extends React.Component {
     state = {
@@ -11,6 +12,15 @@ class DelDialog extends React.Component {
     }
     closeModal = (e) => {
         this.setState({isShowDialog: false});
+    }
+
+    //видалення
+    onClick = (e) => {
+        e.preventDefault();
+        this.props.dispatch({type:'DELETE_CAR',name:this.props.name});
+        this.closeModal();
+
+        console.log(this.props.name);
     }
     render() {
         const customStyles = {
@@ -40,7 +50,7 @@ class DelDialog extends React.Component {
                     </div>
                     <div className="modal-footer justify-content-center">
                         <button type="button" className="btn btn-secondary" onClick={this.closeModal}>Ні</button>
-                        <button type="button" className="btn btn-danger" onClick={this.closeModal}>Так</button>
+                        <button type="button" className="btn btn-danger" onClick={this.onClick.bind(this)}>Так</button>
                     </div>
                 </Modal>
             </div>
@@ -48,4 +58,4 @@ class DelDialog extends React.Component {
     }
 }
  
-export default DelDialog;
+export default connect()(DelDialog);
