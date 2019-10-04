@@ -13,11 +13,15 @@ const store = createStore(carReducer);
 const Cars = () => {
     return (
         <div className="container">
-            <Provider store = {store}>
+            
                 <App/>
-            </Provider>
+
         </div>
     );
 }
 
-ReactDOM.render(<Cars/>, document.getElementById('root')); 
+ReactDOM.render(
+    <Provider store = {store}>
+        <Cars/> 
+
+    </Provider>, document.getElementById('root'));

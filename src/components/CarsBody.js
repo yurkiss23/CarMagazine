@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../App.css';
@@ -38,6 +40,7 @@ class CarsBody extends React.Component {
                 this.setState({cars: resp.data, loading: false});
             }
         );
+        console.log(this.props)
     }
     // handleDelete=(e)=>{
     //     e.preventDefault();
@@ -72,6 +75,7 @@ class CarsBody extends React.Component {
         
             { loading && <EclipseWidget /> }
 
+            <AddDialog cars/>
                 <div className="container">
                     <button className="btn btn-success btn-block" onClick={this.getListDataHandler}>Get data</button>
                     <div className="card-deck mb-3 text-center">
@@ -81,13 +85,30 @@ class CarsBody extends React.Component {
                         {/* <button className="btn btn-primary btn-block" onClick={this.toggleDialog}>Add car</button> */}
                         {/* {this.state.isShowDialog === true ? <div>popup shown!</div> : <div>popup hidden!</div>} */}
                     </div>
+                    {this.props.addCars.map((car) => 
+                        <div key={car.id} className="card mb-4 box-shadow border-danger">
+                            <div className="card-header">
+                                <h4 className="my-0 font-weight-normal">{car.name}</h4>
+                            </div>
+                            <img src={car.image} className="card-img-top p-1" alt=""/>
+                            <div className="card-body">
+                                <h1 className="card-title pricing-card-title">{car.name}</h1>
+                                <DelDialog/>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* <CarAddPage makers={makersSelect}/> */}
-            <AddDialog/>
             </React.Fragment>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        addCars: state
+    }
+}
  
-export default CarsBody;
+export default connect(mapStateToProps)(CarsBody);
