@@ -41,13 +41,21 @@ class AddDialog extends React.Component {
     //додавання
     handleSubmit = (e) => {
         e.preventDefault();
+        const urlAddCar = 'https://localhost:44331/api/cars/create';
         const name = this.getName.value;
         const image = this.getImage.value;
         const data = {
             name,
             image,
         }
-        console.log(data)
+        //console.log(data)
+        this.setState({loading: true});
+        axios.post(urlAddCar).then(
+            (resp) => {
+                this.setState({maker:'', loading: false});
+            }
+        );
+
         this.props.dispatch({
             type: 'ADD_CAR',
             data
@@ -86,7 +94,7 @@ class AddDialog extends React.Component {
                         contentLabel="Example Modal"
                     >
                         <h2 ref={subtitle => this.subtitle = subtitle}>Add car</h2>
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <span>Назва</span>
                             <input required type="text" ref={(input)=>this.getName = input} placeholder="Назва"/>
                             <span>Фото</span>
@@ -94,7 +102,7 @@ class AddDialog extends React.Component {
                             <CarAddPage makers={makersSelect}/>
                             {/* <CarAddPage/> */}
                         </form>
-                        <button className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Додати</button>
+                        <button type="submit" className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Додати</button>
                         <button className="btn btn-secondary" onClick={this.closeModal}>Скасувати</button>
                     </Modal>
                 </div>
