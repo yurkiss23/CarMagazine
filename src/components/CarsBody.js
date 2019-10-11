@@ -40,7 +40,7 @@ class CarsBody extends React.Component {
                 this.setState({cars: resp.data, loading: false});
             }
         );
-        console.log(this.props)
+        //console.log(this.props)
     }
     
     render() {
@@ -73,7 +73,7 @@ class CarsBody extends React.Component {
                         {/* <button className="btn btn-primary btn-block" onClick={this.toggleDialog}>Add car</button> */}
                         {/* {this.state.isShowDialog === true ? <div>popup shown!</div> : <div>popup hidden!</div>} */}
                     </div>
-                    {console.log(this.props.addCars)}
+                    {/* {console.log(this.props.addCars)} */}
                     {this.props.addCars.map((car) => 
                         <div key={car.id} className="card mb-4 box-shadow border-danger">
                             <div className="card-header">

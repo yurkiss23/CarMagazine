@@ -9,7 +9,8 @@ import CarsBody from '../CarsBody';
 class AddDialog extends React.Component {
     state = {
         makersSelect:[],
-        modalIsOpen: false
+        modalIsOpen: false,
+        maker: ''
     }
     openModal = this.openModal.bind(this);
     afterOpenModal = this.afterOpenModal.bind(this);
@@ -41,24 +42,26 @@ class AddDialog extends React.Component {
     //додавання
     handleSubmit = (e) => {
         e.preventDefault();
-        const urlAddCar = 'https://localhost:44331/api/cars/create';
-        const name = this.getName.value;
-        const image = this.getImage.value;
-        const data = {
-            name,
-            image,
-        }
-        //console.log(data)
+        const urlAddCar = 'Access-Control-Allow-Origin: https://localhost:44331/api/cars/create';
         this.setState({loading: true});
-        axios.post(urlAddCar).then(
+        const name = this.getName.value;
+        const mkr = this.getMaker.state;
+        const image = this.getImage.value;
+        const model = {
+            name,
+            mkr,
+            image
+        }
+        axios.post(urlAddCar, model).then(
             (resp) => {
-                this.setState({maker:'', loading: false});
+                console.log('---');
+                this.setState({maker: '', loading: false});
             }
         );
 
         this.props.dispatch({
             type: 'ADD_CAR',
-            data
+            model
         });
         this.getName.value='';
         this.getImage.value='';
@@ -76,6 +79,7 @@ class AddDialog extends React.Component {
             }
         };
         const {makersSelect}= this.state;
+        
         
         return (
             <div className="container">
@@ -99,8 +103,7 @@ class AddDialog extends React.Component {
                             <input required type="text" ref={(input)=>this.getName = input} placeholder="Назва"/>
                             <span>Фото</span>
                             <input type="text" ref={(input)=>this.getImage = input} placeholder="Фото"/>
-                            <CarAddPage makers={makersSelect}/>
-                            {/* <CarAddPage/> */}
+                            <CarAddPage makers={makersSelect} ref={(select)=>this.getMaker = select}/>
                         </form>
                         <button type="submit" className="btn btn-success" onClick={this.handleSubmit.bind(this)}>Додати</button>
                         <button className="btn btn-secondary" onClick={this.closeModal}>Скасувати</button>
