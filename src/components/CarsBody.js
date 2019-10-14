@@ -65,6 +65,7 @@ class CarsBody extends React.Component {
 
             <AddDialog cars/>
                 <div className="container">
+                    <button></button>
                     <button className="btn btn-success btn-block" onClick={this.getListDataHandler}>Get data</button>
                     <div className="card-deck mb-3 text-center">
                         {carItems}
@@ -74,7 +75,7 @@ class CarsBody extends React.Component {
                         {/* {this.state.isShowDialog === true ? <div>popup shown!</div> : <div>popup hidden!</div>} */}
                     </div>
                     {/* {console.log(this.props.addCars)} */}
-                    {this.props.addCars.map((car) => 
+                    {/* {this.props.addCars.map((car) => 
                         <div key={car.id} className="card mb-4 box-shadow border-danger">
                             <div className="card-header">
                                 <h4 className="my-0 font-weight-normal">{car.name}</h4>
@@ -85,7 +86,7 @@ class CarsBody extends React.Component {
                                 <DelDialog name={car.name}/>
                             </div>
                         </div>
-                    )}
+                    )} */}
                 </div>
 
                 {/* <CarAddPage makers={makersSelect}/> */}
